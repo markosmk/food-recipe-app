@@ -60,7 +60,7 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a href="https://github.com/markosmk/recipe-food-app-react">
+              <a href="https://github.com/markosmk/food-recipe-app">
                 <svg
                   className="w-6 h-6"
                   fill="#000"
