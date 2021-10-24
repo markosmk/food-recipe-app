@@ -11,13 +11,6 @@ export default function Header() {
 
   let mainMenuTop = offset >= 1 ? styles.headerFix : styles.header;
 
-  // var ScrollTop = $('.back-to-top');
-  // if ($(window).scrollTop() > 1000) {
-  //     ScrollTop.fadeIn(1000);
-  // } else {
-  //     ScrollTop.fadeOut(1000);
-  // }
-
   return (
     <header className={mainMenuTop}>
       <nav className="container">
@@ -67,7 +60,7 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a href="/github">
+              <a href="https://github.com/markosmk/recipe-food-app-react">
                 <svg
                   className="w-6 h-6"
                   fill="#000"

@@ -19,7 +19,12 @@ export default function Footer() {
           </li>
         </ul>
         <div className={styles.footerCopy}>
-          <p>Copyright © 2021. Designed by MarkosMk</p>
+          <p>
+            Copyright © 2021. Designed by{' '}
+            <a href="https://github.com/markosmk" rel="noreferrer" target="_blank">
+              MarkosMk
+            </a>
+          </p>
         </div>
       </div>
     </footer>

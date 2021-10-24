@@ -17,10 +17,14 @@
   font-weight: 700;
 }
 
+.footerCopy a:hover,
 .footerNav > li > a:hover {
   color: #fdc913;
 }
 
 .footerCopy {
   margin: 12px 0;
+}
+.footerCopy a {
+  font-weight: 700;
 }
