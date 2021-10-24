@@ -7,6 +7,7 @@ import Header from './components/Header';
 import FormRecipes from './components/FormRecipes';
 
 export default function App() {
+  const [loading, setLoading] = useState(false);
   const [recipies, setRecipies] = useState([]);
   const [stateField, setStateField] = useState({
     query: '',
@@ -27,8 +28,11 @@ export default function App() {
   // process request to api with axios
   const getRecipes = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(API_FETCH);
       setRecipies(data.hits);
+      console.log(data);
+      setLoading(false);
     } catch (err) {
       // console.log(Object.keys(err), err.message);
       setError(
@@ -60,19 +64,24 @@ export default function App() {
             {error ? (
               <div className="show-message">{error}</div>
             ) : recipies.length > 0 ? (
-              <div className="recipe-list">
-                {recipies.map((recipe, index) => (
-                  <CardRecipe key={index} recipe={recipe} />
-                ))}
-              </div>
-            ) : (
-              <div className="loading">
-                <div className="dots">
-                  <div></div>
-                  <div></div>
-                  <div></div>
+              loading ? (
+                <div className="loading">
+                  <div className="dots">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
                 </div>
-                {/* <h3 className="center">No recipes to display 😦</h3> */}
+              ) : (
+                <div className="recipe-list">
+                  {recipies.map((recipe, index) => (
+                    <CardRecipe key={index} recipe={recipe} />
+                  ))}
+                </div>
+              )
+            ) : (
+              <div className="empty">
+                <h3 className="center">No recipes to display 😦</h3>
               </div>
             )}
           </div>

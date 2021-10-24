@@ -1,16 +1,32 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import styles from './CardRecipe.module.css';
 
 export default function CardRecipe({ recipe }) {
-  const { label, image, source } = recipe.recipe;
+  const { label, image, source, url, mealType } = recipe.recipe;
   return (
     image.match(/\.(jpeg|jpg|gif|png)$/) != null && (
       <div className={styles.card}>
         <div className={styles.cardThumb}>
-          <img src={image} alt={label} />
+          <LazyLoadImage
+            effect="blur"
+            width={282}
+            height={282}
+            src={image}
+            alt={label}
+            placeholderSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mM8f3LLUwAH7gMzgEtyFgAAAABJRU5ErkJggg=="
+          />
+          <span className={styles.meal}>{mealType[0]}</span>
         </div>
         <div className={styles.cardTitle}>
-          <small>Author: {source}</small>
-          <h3>{label}</h3>
+          <small>
+            <strong>By</strong> {source}
+          </small>
+          <h3>
+            <a href={url} target="_blank" rel="noreferrer">
+              {label}
+            </a>
+          </h3>
         </div>
         <div className={styles.btnArea}>
           <a className={styles.favBtn} href="/favourites">
@@ -27,8 +43,8 @@ export default function CardRecipe({ recipe }) {
               />
             </svg>
           </a>
-          <a href="/" className="btn">
-            Read More
+          <a href={url} target="_blank" rel="noreferrer" className="btn">
+            Go to Article
           </a>
         </div>
       </div>
