@@ -1,0 +1,44 @@
+.card {
+  position: relative;
+  background: #faf7f2;
+  text-align: center;
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 250ms ease-in;
+}
+
+.cardThumb {
+  margin-bottom: 20px;
+}
+.cardThumb img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+.cardTitle {
+  margin: 20px 0;
+}
+.cardTitle small {
+  display: block;
+  color: #7e7966;
+  margin-bottom: 6px;
+  font-weight: 200;
+}
+
+.btnArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favBtn {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  font-size: 24px;
+  color: #cfc9b4;
+  cursor: pointer;
+}
+.favBtn:hover {
+  color: #fa2352;
+}

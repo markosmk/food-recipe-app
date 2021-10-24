@@ -1,0 +1,26 @@
+.footer {
+  width: 100%;
+  flex-direction: column;
+  margin: 40px 0;
+  background: #faf7f2;
+}
+.footerNav {
+  display: flex;
+  align-items: center;
+}
+.footerNav > :not(li:first-child) {
+  padding-left: 1rem;
+}
+
+.footerNav > li > a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footerNav > li > a:hover {
+  color: #fdc913;
+}
+
+.footerCopy {
+  margin: 12px 0;
+}

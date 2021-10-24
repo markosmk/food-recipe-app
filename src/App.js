@@ -3,6 +3,8 @@ import axios from 'axios';
 import { APP_URI } from './config/constants';
 import CardRecipe from './components/CardRecipe';
 import Footer from './components/Footer';
+import Header from './components/Header';
+import FormRecipes from './components/FormRecipes';
 
 export default function App() {
   const [recipies, setRecipies] = useState([]);
@@ -45,98 +47,38 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      <h1>Food Recipe App</h1>
-      <form className="recipe-search" onSubmit={handleSubmit}>
-        <input
-          className="recipe-input"
-          type="text"
-          name="query"
-          value={stateField.query}
-          onChange={handleChange}
+    <>
+      <Header />
+      <main className="main">
+        <FormRecipes
+          stateField={stateField}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
         />
-        <select name="health" onChange={handleChange} value={stateField.health}>
-          <option value="">Select Health</option>
-          <option value="alcohol-cocktail"> alcohol-cocktail </option>
-          <option value="alcohol-free"> alcohol-free </option>
-          <option value="celery-free"> celery-free </option>
-          <option value="crustacean-free"> crustacean-free </option>
-          <option value="dairy-free"> dairy-free </option>
-          <option value="DASH"> DASH </option>
-          <option value="egg-free"> egg-free </option>
-          <option value="fish-free"> fish-free </option>
-          <option value="fodmap-free"> fodmap-free </option>
-          <option value="gluten-free"> gluten-free </option>
-          <option value="immuno-supportive"> immuno-supportive </option>
-          <option value="keto-friendly"> keto-friendly </option>
-          <option value="kidney-friendly"> kidney-friendly </option>
-          <option value="kosher"> kosher </option>
-          <option value="low-potassium"> low-potassium </option>
-          <option value="low-sugar"> low-sugar </option>
-          <option value="lupine-free"> lupine-free </option>
-          <option value="Mediterranean"> Mediterranean </option>
-          <option value="mollusk-free"> mollusk-free </option>
-          <option value="mustard-free"> mustard-free </option>
-          <option value="no-oil-added"> no-oil-added </option>
-          <option value="paleo"> paleo </option>
-          <option value="peanut-free"> peanut-free </option>
-          <option value="pescatarian"> pescatarian </option>
-          <option value="pork-free"> pork-free </option>
-          <option value="red-meat-free"> red-meat-free </option>
-          <option value="sesame-free"> sesame-free </option>
-          <option value="shellfish-free"> shellfish-free </option>
-          <option value="soy-free"> soy-free </option>
-          <option value="sugar-conscious"> sugar-conscious </option>
-          <option value="sulfite-free"> sulfite-free </option>
-          <option value="tree-nut-free"> tree-nut-free </option>
-          <option value="vegan"> vegan </option>
-          <option value="vegetarian"> vegetarian </option>
-          <option value="wheat-free"> wheat-free </option>
-        </select>
-        <select name="cuisineType" onChange={handleChange} value={stateField.cuisineType}>
-          <option value="">Select Type Cuisine</option>
-          <option value="American"> American </option>
-          <option value="Asian"> Asian </option>
-          <option value="British"> British </option>
-          <option value="Caribbean"> Caribbean </option>
-          <option value="Central Europe"> Central Europe </option>
-          <option value="Chinese"> Chinese </option>
-          <option value="Eastern Europe"> Eastern Europe </option>
-          <option value="French"> French </option>
-          <option value="Indian"> Indian </option>
-          <option value="Italian"> Italian </option>
-          <option value="Japanese"> Japanese </option>
-          <option value="Kosher"> Kosher </option>
-          <option value="Mediterranean"> Mediterranean </option>
-          <option value="Mexican"> Mexican </option>
-          <option value="Middle Eastern"> Middle Eastern </option>
-          <option value="Nordic"> Nordic </option>
-          <option value="South American"> South American </option>
-          <option value="South East Asian"> South East Asian </option>
-        </select>
-
-        <select name="mealType" onChange={handleChange} value={stateField.mealType}>
-          <option value="">Select Type Meal</option>
-          <option value="Breakfast"> Breakfast </option>
-          <option value="Dinner"> Dinner </option>
-          <option value="Lunch"> Lunch </option>
-          <option value="Snack"> Snack </option>
-          <option value="Teatime"> Teatime </option>
-        </select>
-        <button disabled={!stateField.query} type="submit">
-          Search
-        </button>
-      </form>
-      {error ? (
-        <div className="show-message">{error}</div>
-      ) : (
-        <div className="recipe-list">
-          {recipies.map((recipe, index) => (
-            <CardRecipe key={index} recipe={recipe} />
-          ))}
-        </div>
-      )}
-      <Footer />
-    </div>
+        <section className="recipes">
+          <div className="container">
+            {error ? (
+              <div className="show-message">{error}</div>
+            ) : recipies.length > 0 ? (
+              <div className="recipe-list">
+                {recipies.map((recipe, index) => (
+                  <CardRecipe key={index} recipe={recipe} />
+                ))}
+              </div>
+            ) : (
+              <div className="loading">
+                <div className="dots">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                {/* <h3 className="center">No recipes to display 😦</h3> */}
+              </div>
+            )}
+          </div>
+        </section>
+        <Footer />
+      </main>
+    </>
   );
 }
